@@ -108,8 +108,8 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping
 # In[47]:
 
 
-train_data_dir = 'root/mlproject/17_flowers/train/'
-validation_data_dir = 'root/mlproject/17_flowers/validation/'
+train_data_dir = '17_flowers/train/'
+validation_data_dir = '17_flowers/validation/'
 
 # Let's use some data augmentaiton 
 train_datagen = ImageDataGenerator(
@@ -136,7 +136,7 @@ validation_generator = validation_datagen.flow_from_directory(
         target_size=(64,64),
         batch_size=batch_size,
         class_mode='categorical')
-checkpoint = ModelCheckpoint("root/mlproject/flowersvgg.h5",
+checkpoint = ModelCheckpoint("flowersvgg.h5",
                              monitor="val_loss",
                              mode="min",
                              save_best_only = True,
@@ -177,7 +177,7 @@ history = model.fit_generator(
 
 from keras.models import load_model
 
-classifier = load_model('root/mlproject/flowers_vgg.h5')
+classifier = load_model('flowers_vgg.h5')
 
 
 # In[ ]:
@@ -245,7 +245,7 @@ def getRandomImage(path):
     return cv2.imread(file_path+"/"+image_name)    
 
 for i in range(0,10):
-    input_im = getRandomImage("root/mlproject/17_flowers/validation/")
+    input_im = getRandomImage("17_flowers/validation/")
     input_original = input_im.copy()
     input_original = cv2.resize(input_original, None, fx=0.5, fy=0.5, interpolation = cv2.INTER_LINEAR)
     
